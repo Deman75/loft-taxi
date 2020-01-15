@@ -7,7 +7,6 @@ function Logo() {
             <div className='logo-img'>
                 <img className='logo__img-img' src="./images/logo.png" alt="loft-taxi"/>
             </div>
-            <span className='desc'>Loft Taxi</span>
         </div>
     );
 }
