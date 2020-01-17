@@ -1,4 +1,4 @@
-.reg {
+.signup {
     padding: 60px;
     border-radius: 5px;
     color: #323232;
@@ -7,21 +7,21 @@
     /* height: 475px; */
 }
 
-.reg__title {
+.signup__title {
     font-size: 36px;
 }
 
-.reg__desc {
+.signup__desc {
     margin-top: 30px;
 }
 
-.reg__reg {
+.signup__signup {
     text-decoration: none;
     margin-left: 10px;
     color: #1473e6;
 }
 
-.reg__form {
+.signup__form {
     margin-top: 40px;
 }
 

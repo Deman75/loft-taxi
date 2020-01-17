@@ -1,16 +1,25 @@
 import React from 'react'
 
-import './Reg.css'
+import './Signup.css'
 
-function Reg() {
+function Signup(props) {
+    const clickSubmit = (e) => {
+        e.preventDefault();
+        props.setPage('map')
+    };
+    const clickSignup = (e) => {
+        e.preventDefault();
+        props.setPage('login')
+    };
+
     return (
-        <div className='reg'>
-            <h3 className='reg__title'>Регистрация</h3>
-            <div className='reg__desc'>
+        <div className='signup'>
+            <h3 className='signup__title'>Регистрация</h3>
+            <div className='signup__desc'>
                 <span>Уже зарегистрирован?</span>
-                <a className='reg__reg' href="http://">Войти</a>
+                <a onClick={clickSignup} className='signup__signup' href="http://">Войти</a>
             </div>
-            <form className='reg__form' action="POST">
+            <form className='signup__form' action="POST">
                 <div className='form__input form__input_active'>
                     <div className='input__desc'>Адрес электронной почты</div>
                     <input className='input__input' type="email" name='email'/>
@@ -32,11 +41,11 @@ function Reg() {
                     <input className='input__input' type="password" name='password'/>
                 </div>
                 <div className='form__button'>
-                    <button className='form__submit' type='submit'>Зарегистрироваться</button>
+                    <button onClick={clickSubmit} className='form__submit' type='submit'>Зарегистрироваться</button>
                 </div>
             </form>
         </div>
     );
 }
 
-export default Reg;
+export default Signup;

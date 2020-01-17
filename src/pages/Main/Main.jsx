@@ -3,16 +3,15 @@ import React from 'react'
 import './Main.css'
 
 import Logo from '../../components/Logo/Logo'
-// import Login from '../../components/Login/Login'
-import Reg from '../../components/Reg/Reg'
+import Login from '../../components/Login/Login'
+import Signup from '../../components/Signup/Signup'
 
-function Main() {
+function Main(props) {
     return (
         <div className='wrapper wrapper__main'>
             <div className='container container__main'>
                 <Logo></Logo>
-                {/* <Login></Login> */}
-                <Reg></Reg>
+                {props.page === 'login' ? <Login setPage={props.setPage}/> : <Signup setPage={props.setPage}/>}
             </div>
         </div>
     )

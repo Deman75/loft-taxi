@@ -2,13 +2,22 @@ import React from 'react'
 
 import './Login.css'
 
-function Login() {
+function Login(props) {
+    const clickSubmit = (e) => {
+        props.setPage('map')
+    };
+
+    const clickSignup = (e) => {
+        e.preventDefault();
+        props.setPage('signup')
+    };
+
     return (
         <div className='login'>
             <h3 className='login__title'>Войти</h3>
             <div className='login__desc'>
                 <span>Новый пользователь?</span>
-                <a className='login__reg' href="http://">Зарегистрируйтесь</a>
+                <a onClick={clickSignup} className='login__reg' href="http://">Зарегистрируйтесь</a>
             </div>
             <form className='login__form' action="POST">
                 <div className='form__input form__input_active'>
@@ -20,7 +29,7 @@ function Login() {
                     <input className='input__input' type="password" name='password'/>
                 </div>
                 <div className='form__button'>
-                    <button className='form__submit' type='submit'>Войти</button>
+                    <button onClick={clickSubmit} className='form__submit' type='submit'>Войти</button>
                 </div>
             </form>
         </div>
