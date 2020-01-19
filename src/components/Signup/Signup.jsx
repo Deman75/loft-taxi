@@ -1,6 +1,5 @@
-import React from 'react'
-
-import './Signup.css'
+import React from 'react';
+import './Signup.css';
 
 function Signup(props) {
     const clickSubmit = (e) => {
@@ -9,7 +8,7 @@ function Signup(props) {
     };
     const clickSignup = (e) => {
         e.preventDefault();
-        props.setPage('login')
+        props.setActiveForm('login')
     };
 
     return (
