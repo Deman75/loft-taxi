@@ -1,47 +1,40 @@
-import React from 'react'
-import './Header.css'
+import React from 'react';
+import './Header.css';
 
 import Logo from '../Logo/Logo.jsx';
 
 function Header(props) {
-    const page = {
-        Карта: 'map',
-        Профиль: 'profile',
-        Войти: 'login'
-    }
+    const pages = props.pages
+    
+    const handleNavClick = (e) => {
+        e.preventDefault();
 
-    const click = (e) => {
-        const items = document.querySelectorAll('.nav__button');
-
-        for (let i = 0; i < items.length; i++) {
-            items[i].classList.remove('nav__button_active')
-        }
-
-        e.target.classList.add('nav__button_active');
-
-        props.setPage(page[e.target.innerText]);
+        props.setPage(e.target.dataset.id);
     }
     
     return (
         <header className="header">
             <div className='container header__container'>
                 <Logo></Logo>
-                <ul className="nav" onClick={click}>
-                    <li className='nav__item'>
-                        <button type='button' className='nav__button nav__button_active'>
-                            Карта
-                        </button>
-                    </li>
-                    <li className='nav__item'>
-                        <button type='button' className='nav__button'>
-                            Профиль
-                        </button>
-                    </li>
-                    <li className='nav__item'>
-                        <button type='button' className='nav__button'>
-                            Войти
-                        </button>
-                    </li>
+                <ul className="nav">
+                    {pages.map(item => 
+                         (
+                            <li
+                                key={item.index}
+                                className={`nav__item ${item.href === props.activePage
+                                    ? 'nav__item_active'
+                                    : null}`}
+                            >
+                                <a
+                                    href="http://"
+                                    onClick={handleNavClick}
+                                    className='nav__button'
+                                    data-id={item.href}
+                                >
+                                    {item.title}
+                                </a>
+                            </li>)
+                    )}
                 </ul>
             </div>
         </header>

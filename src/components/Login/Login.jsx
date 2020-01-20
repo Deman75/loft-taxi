@@ -1,15 +1,16 @@
-import React from 'react'
+import React from 'react';
 
-import './Login.css'
+import './Login.css';
 
 function Login(props) {
     const clickSubmit = (e) => {
+        e.preventDefault();
         props.setPage('map')
     };
 
     const clickSignup = (e) => {
         e.preventDefault();
-        props.setPage('signup')
+        props.setActiveForm('signup')
     };
 
     return (
