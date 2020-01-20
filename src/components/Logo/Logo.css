@@ -1,18 +1,18 @@
 .logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .logo__img {
-    width: 24px;
+  width: 24px;
 }
 
 .logo__img-img {
-    width: 100%;
+  width: 100%;
 }
 
 .desc {
-    margin-left: 10px;
-    color: yellow;
+  margin-left: 10px;
+  color: yellow;
 }
