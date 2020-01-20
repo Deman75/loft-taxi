@@ -33,7 +33,7 @@ const switchPage = (activePage, setPage, activeForm, setForm) => {
     case 'profile':
       return <Profile/>
     case 'main':
-      return <Main setPage={setPage} setForm={setForm} activeForm={activeForm}/>
+      return <Main setPage={setPage}/>
     default:
       return null;
   }
@@ -41,14 +41,13 @@ const switchPage = (activePage, setPage, activeForm, setForm) => {
 
 function App() {
   const [activePage, setPage] = React.useState('main');
-  const [activeForm, setForm] = React.useState('login');
 
   return (
     <div className='wrapper'>
       {(activePage !== 'main')
         ? <Header activePage={activePage} setPage={setPage} pages={pages}/> 
         : null}
-        {switchPage(activePage, setPage, activeForm, setForm)}
+        {switchPage(activePage, setPage)}
     </div>
   );
 }

@@ -7,14 +7,15 @@ import Login from '../../components/Login/Login';
 import Signup from '../../components/Signup/Signup';
 
 function Main(props) {
-    
+    const [activeForm, setForm] = React.useState('login');
+
     return (
         <div className='wrapper wrapper__main'>
             <div className='container container__main'>
                 <Logo/>
-                { props.activeForm === 'login'
-                    ? <Login setActiveForm = {props.setForm} setPage={props.setPage}/>
-                    : <Signup setActiveForm = {props.setForm} setPage={props.setPage}/>
+                { activeForm === 'login'
+                    ? <Login setActiveForm = {setForm} setPage={props.setPage}/>
+                    : <Signup setActiveForm = {setForm} setPage={props.setPage}/>
                  }
             </div>
         </div>
