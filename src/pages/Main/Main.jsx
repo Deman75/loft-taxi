@@ -1,4 +1,5 @@
 import React from "react";
+import propTypes from "prop-types";
 
 import "./Main.css";
 
@@ -22,5 +23,9 @@ function Main(props) {
     </div>
   );
 }
+
+Main.propTypes = {
+  setPage: propTypes.func.isRequired
+};
 
 export default Main;

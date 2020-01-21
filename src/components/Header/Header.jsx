@@ -1,4 +1,5 @@
 import React from "react";
+import propTypes from "prop-types";
 import "./Header.css";
 
 import Logo from "../Logo/Logo.jsx";
@@ -39,5 +40,17 @@ function Header(props) {
     </header>
   );
 }
+
+Header.propTypes = {
+  pages: propTypes.arrayOf(
+    propTypes.shape({
+      title: propTypes.string.isRequired,
+      href: propTypes.string.isRequired,
+      index: propTypes.number.isRequired
+    })
+  ),
+  activePage: propTypes.string.isRequired,
+  setPage: propTypes.func.isRequired
+};
 
 export default Header;

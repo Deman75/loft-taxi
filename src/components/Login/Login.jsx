@@ -1,14 +1,15 @@
 import React from "react";
+import propTypes from "prop-types";
 
 import "./Login.css";
 
 function Login(props) {
-  const clickSubmit = e => {
+  const handleClickSubmit = e => {
     e.preventDefault();
     props.setPage("map");
   };
 
-  const clickSignup = e => {
+  const handleClickSignup = e => {
     e.preventDefault();
     props.setActiveForm("signup");
   };
@@ -18,7 +19,7 @@ function Login(props) {
       <h3 className="login__title">Войти</h3>
       <div className="login__desc">
         <span>Новый пользователь?</span>
-        <a onClick={clickSignup} className="login__reg" href="http://">
+        <a onClick={handleClickSignup} className="login__reg" href="http://">
           Зарегистрируйтесь
         </a>
       </div>
@@ -32,7 +33,11 @@ function Login(props) {
           <input className="input__input" type="password" name="password" />
         </div>
         <div className="form__button">
-          <button onClick={clickSubmit} className="form__submit" type="submit">
+          <button
+            onClick={handleClickSubmit}
+            className="form__submit"
+            type="submit"
+          >
             Войти
           </button>
         </div>
@@ -40,5 +45,10 @@ function Login(props) {
     </div>
   );
 }
+
+Login.propTypes = {
+  setActiveForm: propTypes.func.isRequired,
+  setPage: propTypes.func.isRequired
+};
 
 export default Login;
