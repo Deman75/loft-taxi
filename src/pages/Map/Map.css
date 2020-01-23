@@ -1,7 +1,16 @@
-.map {
+.map__wrap {
+  position: relative;
   display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100%;
   width: 100%;
+}
+
+.map__rout {
+  position: absolute;
+  left: 100px;
+  top: 100px;
+  width: 300px;
+  height: 200px;
+  z-index: 1;
+  background-color: #fff;
 }

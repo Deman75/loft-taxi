@@ -39,7 +39,7 @@ const switchPage = (activePage, setPage, activeForm, setForm) => {
 };
 
 function App() {
-  const [activePage, setPage] = React.useState("main");
+  const [activePage, setPage] = React.useState("map");
 
   return (
     <div className="wrapper">
