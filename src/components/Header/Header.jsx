@@ -2,9 +2,10 @@ import React from "react";
 import propTypes from "prop-types";
 import "./Header.css";
 
-import Logo from "../Logo/Logo.jsx";
-
 import { ContextLogin } from "../../store/context/Context";
+
+import { Card } from "@material-ui/core";
+import { Logo } from "loft-taxi-mui-theme";
 
 function Header(props) {
   const pages = props.pages;
@@ -22,30 +23,28 @@ function Header(props) {
   };
 
   return (
-    <header className="header">
-      <div className="container header__container">
-        <Logo></Logo>
-        <ul className="nav">
-          {pages.map(item => (
-            <li
-              key={item.index}
-              className={`nav__item ${
-                item.href === props.activePage ? "nav__item_active" : null
-              }`}
+    <Card className="header">
+      <Logo></Logo>
+      <ul className="nav">
+        {pages.map(item => (
+          <li
+            key={item.index}
+            className={`nav__item ${
+              item.href === props.activePage ? "nav__item_active" : null
+            }`}
+          >
+            <a
+              href="http://"
+              onClick={handleNavClick}
+              className="nav__button"
+              data-id={item.href}
             >
-              <a
-                href="http://"
-                onClick={handleNavClick}
-                className="nav__button"
-                data-id={item.href}
-              >
-                {item.title}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </header>
+              {item.title}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </Card>
   );
 }
 

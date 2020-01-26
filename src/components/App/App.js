@@ -27,7 +27,7 @@ const pages = [
   }
 ];
 
-const switchPage = (activePage, setPage, activeForm, setForm) => {
+const switchPage = (activePage, setPage) => {
   switch (activePage) {
     case "map":
       return <Map />;
@@ -51,7 +51,7 @@ function App() {
     setUser
   ]);
 
-  console.log(user);
+  if (!user.isLoggedIn && activePage !== "main") setPage("main");
 
   return (
     <ContextLogin.Provider value={providerUser}>
