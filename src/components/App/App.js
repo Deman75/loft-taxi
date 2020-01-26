@@ -7,6 +7,8 @@ import Main from "../../pages/Main/Main";
 import Map from "../../pages/Map/Map";
 import Profile from "../../pages/Profile/Profile";
 
+import { ContextLogin } from "../../store/context/Context";
+
 const pages = [
   {
     title: "Карта",
@@ -19,8 +21,8 @@ const pages = [
     index: 2
   },
   {
-    title: "Войти",
-    href: "main",
+    title: "Выйти",
+    href: "logout",
     index: 3
   }
 ];
@@ -34,20 +36,32 @@ const switchPage = (activePage, setPage, activeForm, setForm) => {
     case "main":
       return <Main setPage={setPage} />;
     default:
-      return null;
+      return <Main setPage={setPage} />;
   }
 };
 
 function App() {
-  const [activePage, setPage] = React.useState("map");
+  const [activePage, setPage] = React.useState("main");
+  const [user, setUser] = React.useState({
+    ligin: "",
+    isLoggedIn: false
+  });
+  const providerUser = React.useMemo(() => ({ user, setUser }), [
+    user,
+    setUser
+  ]);
+
+  console.log(user);
 
   return (
-    <div className="wrapper">
-      {activePage !== "main" ? (
-        <Header activePage={activePage} setPage={setPage} pages={pages} />
-      ) : null}
-      {switchPage(activePage, setPage)}
-    </div>
+    <ContextLogin.Provider value={providerUser}>
+      <div className="wrapper">
+        {activePage !== "main" ? (
+          <Header activePage={activePage} setPage={setPage} pages={pages} />
+        ) : null}
+        {switchPage(activePage, setPage)}
+      </div>
+    </ContextLogin.Provider>
   );
 }
 export default App;

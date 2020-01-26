@@ -4,11 +4,19 @@ import "./Header.css";
 
 import Logo from "../Logo/Logo.jsx";
 
+import { ContextLogin } from "../../store/context/Context";
+
 function Header(props) {
   const pages = props.pages;
+  const { setUser } = React.useContext(ContextLogin);
 
   const handleNavClick = e => {
     e.preventDefault();
+
+    if (e.target.dataset.id === "logout") {
+      props.setPage(e.target.dataset.id);
+      setUser({ login: null, isLoggedIn: false });
+    }
 
     props.setPage(e.target.dataset.id);
   };
