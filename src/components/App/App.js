@@ -42,26 +42,27 @@ const switchPage = (activePage, setPage) => {
 
 function App() {
   const [activePage, setPage] = React.useState("main");
-  const [user, setUser] = React.useState({
-    ligin: "",
-    isLoggedIn: false
-  });
-  const providerUser = React.useMemo(() => ({ user, setUser }), [
-    user,
-    setUser
-  ]);
+  // const [user, setUser] = React.useState({
+  //   ligin: "",
+  //   isLoggedIn: false
+  // });
+  // const providerUser = React.useMemo(() => ({ user, setUser }), [
+  //   user,
+  //   setUser
+  // ]);
+  const { user } = React.useContext(ContextLogin);
+
+  // console.log(user);
 
   if (!user.isLoggedIn && activePage !== "main") setPage("main");
 
   return (
-    <ContextLogin.Provider value={providerUser}>
-      <div className="wrapper">
-        {activePage !== "main" ? (
-          <Header activePage={activePage} setPage={setPage} pages={pages} />
-        ) : null}
-        {switchPage(activePage, setPage)}
-      </div>
-    </ContextLogin.Provider>
+    <div className="wrapper">
+      {activePage !== "main" ? (
+        <Header activePage={activePage} setPage={setPage} pages={pages} />
+      ) : null}
+      {switchPage(activePage, setPage)}
+    </div>
   );
 }
 export default App;

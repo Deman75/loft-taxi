@@ -1,9 +1,16 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { mount } from "enzyme";
 import Main from "./Main";
 import Login from "../../components/Login/Login";
+import { LoginProvider } from "../../store/context/Context";
 
-it("render shallow", () => {
-  const wrapper = shallow(<Main />);
-  expect(wrapper.contains(<Login />)).toEqual(true);
+describe("some test", () => {
+  it("render shallow", () => {
+    const wrapper = mount(
+      <LoginProvider>
+        <Main setPage={() => {}}></Main>
+      </LoginProvider>
+    );
+    expect(wrapper.find(".login").length).toEqual(1);
+  });
 });
