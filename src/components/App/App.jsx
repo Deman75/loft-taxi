@@ -42,9 +42,9 @@ const switchPage = (activePage, setPage) => {
 
 function App() {
   const [activePage, setPage] = React.useState("main");
-  const { user } = React.useContext(ContextLogin);
+  const { isLoggedIn } = React.useContext(ContextLogin);
 
-  if (!user.isLoggedIn && activePage !== "main") setPage("main");
+  if (!isLoggedIn && activePage !== "main") setPage("main");
 
   return (
     <div className="wrapper">

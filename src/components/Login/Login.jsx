@@ -1,11 +1,10 @@
-import React from "react";
+import React, { memo } from "react";
 import propTypes from "prop-types";
 
 import "./Login.css";
 
 import { ContextLogin } from "../../store/context/Context";
 
-import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Link from "@material-ui/core/Link";
@@ -38,18 +37,11 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function Login(props) {
-  const { setUser } = React.useContext(ContextLogin);
+  const { login } = React.useContext(ContextLogin);
   const classes = useStyles();
 
   const inputLogin = React.useRef(null);
   const inputPass = React.useRef(null);
-
-  const login = (user, password) => {
-    if (user && password) {
-      return { name: user, loggedIn: true };
-    }
-    return { name: null, loggedIn: false };
-  };
 
   const handleClickSubmit = e => {
     e.preventDefault();
@@ -58,12 +50,11 @@ function Login(props) {
       pass: inputPass.current.value
     };
 
-    const loggedIn = login(user.login, user.pass);
-
-    if (loggedIn.loggedIn) {
-      setUser({ login: loggedIn.name, isLoggedIn: true });
+    if (user.login && user.pass) {
+      login();
       props.setPage("map");
     }
+    return;
   };
 
   const handleClickSignup = e => {
@@ -82,7 +73,7 @@ function Login(props) {
             Новый пользователь?
           </Grid>
           <Grid item>
-            <Link href="#" variant="body2">
+            <Link href="#" variant="body2" onClick={handleClickSignup}>
               {"Зарегистрируйтесь"}
             </Link>
           </Grid>
@@ -129,4 +120,4 @@ Login.propTypes = {
   setPage: propTypes.func.isRequired
 };
 
-export default Login;
+export default memo(Login);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import propTypes from "prop-types";
 import "./Header.css";
 
@@ -9,14 +9,14 @@ import { Logo } from "loft-taxi-mui-theme";
 
 function Header(props) {
   const pages = props.pages;
-  const { setUser } = React.useContext(ContextLogin);
+  const { logout } = React.useContext(ContextLogin);
 
   const handleNavClick = e => {
     e.preventDefault();
 
     if (e.target.dataset.id === "logout") {
       props.setPage(e.target.dataset.id);
-      setUser({ login: null, isLoggedIn: false });
+      logout();
     }
 
     props.setPage(e.target.dataset.id);
@@ -60,4 +60,4 @@ Header.propTypes = {
   setPage: propTypes.func.isRequired
 };
 
-export default Header;
+export default memo(Header);
