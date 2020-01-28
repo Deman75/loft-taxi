@@ -1,7 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
 import Main from "./Main";
-import Login from "../../components/Login/Login";
 import { LoginProvider } from "../../store/context/Context";
 
 describe("some test", () => {

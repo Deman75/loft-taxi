@@ -5,8 +5,41 @@ import "./Login.css";
 
 import { ContextLogin } from "../../store/context/Context";
 
+import TextField from "@material-ui/core/TextField";
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import Link from "@material-ui/core/Link";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
+
+const useStyles = makeStyles(theme => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center"
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main
+  },
+  form: {
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing(0)
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 0)
+  },
+  grid: {
+    marginRight: "10px"
+  }
+}));
+
 function Login(props) {
   const { setUser } = React.useContext(ContextLogin);
+  const classes = useStyles();
 
   const inputLogin = React.useRef(null);
   const inputPass = React.useRef(null);
@@ -40,41 +73,52 @@ function Login(props) {
 
   return (
     <div className="login">
-      <h3 className="login__title">Войти</h3>
-      <div className="login__desc">
-        <span>Новый пользователь?</span>
-        <a onClick={handleClickSignup} className="login__reg" href="http://">
-          Зарегистрируйтесь
-        </a>
-      </div>
-      <form className="login__form" action="POST">
-        <div className="form__input form__input_active">
-          <div className="input__desc">Имя пользователя*</div>
-          <input
-            ref={inputLogin}
-            className="input__input"
-            type="email"
-            name="login"
-          />
-        </div>
-        <div className="form__input">
-          <div className="input__desc">Пароль*</div>
-          <input
-            ref={inputPass}
-            className="input__input"
-            type="password"
-            name="password"
-          />
-        </div>
-        <div className="form__button">
-          <button
-            onClick={handleClickSubmit}
-            className="form__submit"
+      <Typography component="h1" variant="h4">
+        Войти
+      </Typography>
+      <form className={classes.form} noValidate>
+        <Grid container>
+          <Grid item className={classes.grid}>
+            Новый пользователь?
+          </Grid>
+          <Grid item>
+            <Link href="#" variant="body2">
+              {"Зарегистрируйтесь"}
+            </Link>
+          </Grid>
+        </Grid>
+        <Grid container direction="column">
+          <Grid item xs>
+            <InputLabel htmlFor="component-simple">
+              Имя пользователя*
+            </InputLabel>
+            <Input
+              inputRef={inputLogin}
+              type="email"
+              id="email"
+              fullWidth
+              // validate
+            />
+          </Grid>
+          <Grid item xs>
+            <InputLabel htmlFor="component-simple">Пароль*</InputLabel>
+            <Input
+              inputRef={inputPass}
+              type="password"
+              id="password"
+              fullWidth
+            />
+          </Grid>
+          <Button
             type="submit"
+            variant="contained"
+            color="primary"
+            onClick={handleClickSubmit}
+            className={classes.submit}
           >
             Войти
-          </button>
-        </div>
+          </Button>
+        </Grid>
       </form>
     </div>
   );
