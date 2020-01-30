@@ -1,12 +1,13 @@
 import React from "react";
+import propTypes from "prop-types";
 import "./Signup.css";
 
 function Signup(props) {
-  const clickSubmit = e => {
+  const handleClickSubmit = e => {
     e.preventDefault();
     props.setPage("map");
   };
-  const clickSignup = e => {
+  const handleClickSignup = e => {
     e.preventDefault();
     props.setActiveForm("login");
   };
@@ -16,7 +17,11 @@ function Signup(props) {
       <h3 className="signup__title">Регистрация</h3>
       <div className="signup__desc">
         <span>Уже зарегистрирован?</span>
-        <a onClick={clickSignup} className="signup__signup" href="http://">
+        <a
+          onClick={handleClickSignup}
+          className="signup__signup"
+          href="http://"
+        >
           Войти
         </a>
       </div>
@@ -42,7 +47,11 @@ function Signup(props) {
           <input className="input__input" type="password" name="password" />
         </div>
         <div className="form__button">
-          <button onClick={clickSubmit} className="form__submit" type="submit">
+          <button
+            onClick={handleClickSubmit}
+            className="form__submit"
+            type="submit"
+          >
             Зарегистрироваться
           </button>
         </div>
@@ -50,5 +59,10 @@ function Signup(props) {
     </div>
   );
 }
+
+Signup.propTypes = {
+  setActiveForm: propTypes.func.isRequired,
+  setPage: propTypes.func.isRequired
+};
 
 export default Signup;

@@ -1,44 +1,123 @@
-import React from "react";
+import React, { memo } from "react";
+import propTypes from "prop-types";
 
 import "./Login.css";
 
+import { ContextLogin } from "../../store/context/Context";
+
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import Link from "@material-ui/core/Link";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
+
+const useStyles = makeStyles(theme => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center"
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main
+  },
+  form: {
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing(0)
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 0)
+  },
+  grid: {
+    marginRight: "10px"
+  }
+}));
+
 function Login(props) {
-  const clickSubmit = e => {
+  const { login } = React.useContext(ContextLogin);
+  const classes = useStyles();
+
+  const inputLogin = React.useRef(null);
+  const inputPass = React.useRef(null);
+
+  const handleClickSubmit = e => {
     e.preventDefault();
-    props.setPage("map");
+    const user = {
+      login: inputLogin.current.value,
+      pass: inputPass.current.value
+    };
+
+    if (user.login && user.pass) {
+      login();
+      props.setPage("map");
+    }
+    return;
   };
 
-  const clickSignup = e => {
+  const handleClickSignup = e => {
     e.preventDefault();
     props.setActiveForm("signup");
   };
 
   return (
     <div className="login">
-      <h3 className="login__title">Войти</h3>
-      <div className="login__desc">
-        <span>Новый пользователь?</span>
-        <a onClick={clickSignup} className="login__reg" href="http://">
-          Зарегистрируйтесь
-        </a>
-      </div>
-      <form className="login__form" action="POST">
-        <div className="form__input form__input_active">
-          <div className="input__desc">Имя пользователя*</div>
-          <input className="input__input" type="email" name="login" />
-        </div>
-        <div className="form__input">
-          <div className="input__desc">Пароль*</div>
-          <input className="input__input" type="password" name="password" />
-        </div>
-        <div className="form__button">
-          <button onClick={clickSubmit} className="form__submit" type="submit">
+      <Typography component="h1" variant="h4">
+        Войти
+      </Typography>
+      <form className={classes.form} noValidate>
+        <Grid container>
+          <Grid item className={classes.grid}>
+            Новый пользователь?
+          </Grid>
+          <Grid item>
+            <Link href="#" variant="body2" onClick={handleClickSignup}>
+              {"Зарегистрируйтесь"}
+            </Link>
+          </Grid>
+        </Grid>
+        <Grid container direction="column">
+          <Grid item xs>
+            <InputLabel htmlFor="component-simple">
+              Имя пользователя*
+            </InputLabel>
+            <Input
+              inputRef={inputLogin}
+              type="email"
+              id="email"
+              fullWidth
+              // validate
+            />
+          </Grid>
+          <Grid item xs>
+            <InputLabel htmlFor="component-simple">Пароль*</InputLabel>
+            <Input
+              inputRef={inputPass}
+              type="password"
+              id="password"
+              fullWidth
+            />
+          </Grid>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            onClick={handleClickSubmit}
+            className={classes.submit}
+          >
             Войти
-          </button>
-        </div>
+          </Button>
+        </Grid>
       </form>
     </div>
   );
 }
 
-export default Login;
+Login.propTypes = {
+  setActiveForm: propTypes.func.isRequired,
+  setPage: propTypes.func.isRequired
+};
+
+export default memo(Login);

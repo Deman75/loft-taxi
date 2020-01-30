@@ -7,6 +7,8 @@ import Main from "../../pages/Main/Main";
 import Map from "../../pages/Map/Map";
 import Profile from "../../pages/Profile/Profile";
 
+import { ContextLogin } from "../../store/context/Context";
+
 const pages = [
   {
     title: "Карта",
@@ -19,13 +21,13 @@ const pages = [
     index: 2
   },
   {
-    title: "Войти",
-    href: "main",
+    title: "Выйти",
+    href: "logout",
     index: 3
   }
 ];
 
-const switchPage = (activePage, setPage, activeForm, setForm) => {
+const switchPage = (activePage, setPage) => {
   switch (activePage) {
     case "map":
       return <Map />;
@@ -34,12 +36,15 @@ const switchPage = (activePage, setPage, activeForm, setForm) => {
     case "main":
       return <Main setPage={setPage} />;
     default:
-      return null;
+      return <Main setPage={setPage} />;
   }
 };
 
 function App() {
   const [activePage, setPage] = React.useState("main");
+  const { isLoggedIn } = React.useContext(ContextLogin);
+
+  if (!isLoggedIn && activePage !== "main") setPage("main");
 
   return (
     <div className="wrapper">

@@ -15,7 +15,7 @@ html {
 
 * {
   box-sizing: border-box;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 h1,
@@ -65,6 +65,6 @@ code {
 
 .container {
   max-width: 1170px;
-  width: 1170px;
+  width: 100%;
   margin: 0 auto;
 }
