@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "../Header/Header.jsx";
+import { Link, Route } from "react-router-dom";
 
 import "./App.css";
 
@@ -48,10 +49,17 @@ function App() {
 
   return (
     <div className="wrapper">
-      {activePage !== "main" ? (
+      {/* {activePage !== "main" ? (
         <Header activePage={activePage} setPage={setPage} pages={pages} />
       ) : null}
-      {switchPage(activePage, setPage)}
+      {switchPage(activePage, setPage)} */}
+      <Route
+        path="/"
+        render={props => <Main {...props} setPage={setPage} />}
+        exact
+      />
+      <Route path="/map" component={Map} />
+      <Route path="/profile" component={Profile} />
     </div>
   );
 }

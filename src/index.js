@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./components/App/App";
 import * as serviceWorker from "./serviceWorker";
@@ -11,7 +12,9 @@ import { LoginProvider } from "./store/context/Context";
 ReactDOM.render(
   <MuiThemeProvider theme={theme}>
     <LoginProvider>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </LoginProvider>
   </MuiThemeProvider>,
   document.getElementById("root")

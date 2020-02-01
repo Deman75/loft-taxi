@@ -1,5 +1,6 @@
 import React, { memo } from "react";
 import propTypes from "prop-types";
+import { Link as RouterLink } from "react-router-dom";
 
 import "./Login.css";
 
@@ -39,16 +40,6 @@ function Login(props) {
 
   const handleClickSubmit = e => {
     e.preventDefault();
-    const user = {
-      login: inputLogin.current.value,
-      pass: inputPass.current.value
-    };
-
-    if (user.login && user.pass) {
-      login();
-      props.setPage("map");
-    }
-    return;
   };
 
   const handleClickSignup = e => {
@@ -113,8 +104,7 @@ function Login(props) {
 }
 
 Login.propTypes = {
-  setActiveForm: propTypes.func.isRequired,
-  setPage: propTypes.func.isRequired
+  setActiveForm: propTypes.func.isRequired
 };
 
 export default memo(Login);
